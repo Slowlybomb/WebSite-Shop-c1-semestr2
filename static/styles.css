@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background:
+    linear-gradient(0deg, rgb(29, 134, 136) 49.48%, #f4f4f4 100%);
+    text-align: center;
+    padding: 3em 0;
+}
+header{
+    background:
+    linear-gradient(180deg, rgb(29, 134, 136) 49.48%, #f4f4f4 100%);
+}
+
+form button[type="submit"] {
+    text-decoration: none;
+    text-align: center;
+    padding: 1em 1em;
+    border-radius: 0.3em;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+nav a{
+    color: #fff;
+    background-color: rgba(37, 45, 74, 0.454);
+    padding: 0.8em 3em;
+    border-radius: 1em;
+}
+
+.see_details a{
+
+}
+
+form button[type="submit"]{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav a:hover, 
+.see_details a:hover, 
+footer a:hover, 
+form input[type="submit"]:hover, 
+form button[type="submit"]:hover {
+    background-color: #666;
+    color: #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+form input[type="text"], 
+form input[type="password"], 
+form select, form input[type="submit"], 
+form button[type="submit"] {
+    padding: 1em;
+    margin: 0.5em 0;
+    width: 100%;
+    border: none;
+    border-radius: 0.3em;
+}
+
+form input[type="submit"], form button[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    display: inline-block;
+    width: auto;
+}
+
+form input[type="submit"]:focus, form button[type="submit"]:focus, nav a:focus, .see_details a:focus, footer a:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
+}
+
+main {
+    padding: 2em;
+    margin-bottom: 6em;
+}
+
+h1, h2 {
+    margin-bottom: 0.8em;
+}
+
+aside, table {
+    margin-bottom: 1.5em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.8em;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #e8e5e5;
+}
+
+@media (max-width: 768px) {
+    body, main, nav a {
+        font-size: 0.9em;
+    }
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 1.2em;
+}
+form>label{
+    margin: 0, auto;
+    font-size: 1.3em;
+}
+
+#add_to_cart label{
+    font-size: 1em;
+}
+
+.paint img{
+    width: 6em;
+    height: 6em;
+}
+
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav a, td a{
+    text-decoration: none
+}
+
+td a{
+    padding: 1em;
+    background-color: rgb(40, 120, 111);
+    color: rgb(223, 226, 131);
+    border-radius: 1em;
+}
+td{
+    text-align: center;
+}
+
+.cart td a{
+    padding: 0.5em;
+}
+
+.link_to_page{
+    text-decoration: none;
+    color: #fff;
+    padding: 1.2em;
+    margin-top: 1em;
+    border-radius: 1em;
+    background-color: #62d528;
+
+}
+
+.login{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+h1,h2{
+    margin-top: 1em;
+}
+table label{
+    font-size: 2em;
+    color: #ddd;
+    background-color: red;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 0.5em ;
+}
+
+td li{
+    background-color: rgb(245, 210, 165);
+    margin: 0.1em;
+}
+table{
+    margin: 1em ;
+}
+
+.table-button, .remove{
+    background-color: #b92843;
+    color: white;
+}
+.remove{
+    padding: 1em;
+    border-radius: 0.4em;
+}

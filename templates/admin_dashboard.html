@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+
+<a class="link_to_page" href="{{ url_for('seeOrderAdmin') }} ">SEE ORDERS</a>
+<a class="link_to_page" href="{{ url_for('Users') }} ">SEE USERS</a>
+
+<section class="add_new_content">
+    <h2>Add New Product</h2>
+    <form action="{{ url_for('addProductForm') }}" method="post" enctype="multipart/form-data">
+        {{ add_product_form.hidden_tag() }}
+        {{ add_product_form.paint_name.label }}
+        <br />
+        {{ add_product_form.paint_name }}
+        <br>
+
+        {{ add_product_form.paint_city.label }}
+        <br />
+        {{ add_product_form.paint_city }}
+        <br>
+        <small>Advice: The best way to write product name is: product_name, city. Product city is not required, but it helps with recommendation</small>
+
+        <br />
+        {{ add_product_form.paint_description.label }}
+        <br />
+        {{ add_product_form.paint_description }}
+
+        <br />
+        {{ add_product_form.paint_type.label }}
+        <br />
+        {{ add_product_form.paint_type }}
+
+        <br />
+        {{ add_product_form.image.label }}
+        {{ add_product_form.image }}
+        <br />
+
+        {{ add_product_form.submit }}
+        <br />
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </form>
+</section>
+
+{% endblock %}

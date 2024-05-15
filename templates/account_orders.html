@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Order History</h1>
+
+{% if orders %}
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Order Address</th>
+        <th>Items</th>
+        <th>Comments</th>
+        <th>Total Price</th>
+    </tr>
+
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.order_id }}</td>
+        <td>{{ order.order_address }}</td>
+        <td>
+            <ul>
+                {% for item in order.parsed_order_details %}
+                <li>
+                    {{ item.paint_name }} - Size: {{ item.paint_size }}, Quantity: {{ item.quantity }}, Price: {{ item.price }}€
+                </li>
+                <br>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>{{ order.comments }}</td>
+        <td>{{ order.total_price }}€</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>You have no orders yet.</p>
+{% endif %}
+
+{% endblock %}

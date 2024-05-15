@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>Users</h1>
+
+<a class="remove" href="{{ url_for('removeRandomUser')}}">Remove random user</a>
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{% if users %}
+<table>
+    {% for user in users %}
+    <tr>
+        <td>{{ user['user_id'] }}</td>
+        {% if user['is_admin'] == 1 %}
+        <td>CAN NOT BE REMOVED</td>
+        {% else %}
+        <td>
+            <form action="{{ url_for('removeUser', user_id=user['user_id']) }}" method="post">
+                <input type="submit" value="Remove" class="remove">
+            </form>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No users.</p>
+{% endif %}
+
+
+
+{% endblock %}

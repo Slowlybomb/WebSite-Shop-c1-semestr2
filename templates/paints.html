@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>Our Paints Catalogue</h1>
+</br>
+<aside>
+    <form action="" method="post" novalidate>
+        {{ form.search.label }}
+        {{ form.search() }}
+        {% for error in form.search.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.hidden_tag() }}
+        {{ form.paint_type.label }}
+        {{ form.paint_type }}
+        {{ form.submit() }}
+    </form>
+</aside>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+{% endwith %}
+<table>
+    {% for paint in paints %}
+    <tr>
+        <td>
+            <img src="{{ url_for('static', filename='img/' + paint['img_name']) }}" alt="{{ paint['paint_name'] }}" style="width: 100px; height: auto;">
+        </td>
+        <td>
+            {{ paint["paint_name"] }}
+        </td>
+        <td class="see_details"><a href="{{ url_for('paint', paint_id=paint['paint_id'] ) }}">
+                See details</a></td>
+        {% if session.get("is_admin") %}
+        <td>
+            <a class="remove" href="{{ url_for('removePaint', paint_id=paint['paint_id'] ) }}">Remove</a>
+        </td>
+        {% endif %}
+        
+    {% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>Your cart</h1>
+{% if cart %}
+<a class="link_to_page" href="{{ url_for('order')}}">MAKE ORDER</a>
+<table>
+    {% for cart_id in cart %}
+        <tr class="cart">
+            <td>{{ names[cart[cart_id]["paint_id"]] }}</td>
+            <td>Size: {{ cart[cart_id]['size'] }}</td>
+            <td>Quantity: 
+                <a href="{{ url_for('increase_quantity', cart_id=cart_id ) }}">+</a>          
+                {{ cart[cart_id]['quantity'] }}
+                <a href="{{ url_for('decrease_quantity', cart_id=cart_id ) }}">-</a>        
+            </td>
+            <td>Price: {{ cart[cart_id]['price'] }}€</td>
+            <td><a href="{{ url_for('paint', paint_id=cart[cart_id]['paint_id'] ) }}">
+                See details</a></td>  
+            <td><a href="{{ url_for('remove_from_cart', cart_id=cart_id ) }}">
+                remove</a></td>
+        </tr>
+    
+    {% endfor %}
+</table>
+{% else %}
+<p>Your cart is empty!</p>
+{% endif %}
+<a href="{{ url_for('paints') }}">
+    Go back to the paints</a>
+
+{% endblock %}

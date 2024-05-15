@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<form id="order" action="" method="POST">
+
+    <h2>Place Your Order</h2>
+    {{ form.hidden_tag() }}
+
+    {{ form.customer_name.label }}
+    {{ form.customer_name }}
+    {% for error in form.customer_name.errors %}
+    {{ error }}
+    {% endfor %}
+    <br>
+
+    {{ form.customer_surname.label }}
+    {{ form.customer_surname() }}
+    {% for error in form.customer_surname.errors %}
+    {{ error }}
+    {% endfor %}
+    <br>
+
+
+    {{ form.customer_email.label }}
+    {{ form.customer_email() }}
+    {% for error in form.customer_email.errors %}
+    {{ error }}
+    {% endfor %}
+    <br>
+
+
+    {{ form.address.label }}
+    {{ form.address() }}
+    {% for error in form.address.errors %}
+    {{ error }}
+    {% endfor %}
+    <br>
+
+
+    {{ form.comments.label }}
+    {{ form.comments() }}
+    <br>
+
+
+    {{ form.submit() }}
+
+</form>
+
+{% endblock %}

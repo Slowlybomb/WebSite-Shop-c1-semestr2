@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SistersInk</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link rel="icon" type="image/x-icon" href="static/img/android-icon-72x72.png">
+</head>
+<body>
+  <header>
+    <nav>
+      {% if g.url == "paints" %}
+        <a href="{{ url_for('index') }}">Home</a>
+      {% else %}
+        <a href="{{ url_for('paints') }}">Catalogue</a>
+      {% endif %}
+      {% if not session.get("is_admin") %}
+        <a href="{{ url_for('cart') }}">See your cart</a>
+      {% endif %}
+      {% if g.user %}
+        {% if session.get("is_admin") %}
+          <a href="{{ url_for('admin') }}">Admin dashboard</a>
+        {% endif %}
+        {% if not session.get("is_admin") %}
+          <a href="{{ url_for('account') }}">Account: {{ g.user }}</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Registration</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>
+    {% block main_content %} 
+    {% endblock %}
+  </main>
+  <footer>This web site is part of CA. Made by Hleb Slyusar</footer>
+</body>
+</html>

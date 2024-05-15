@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Orders</h1>
+
+{% if orders %}
+{% for order in orders %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<table>
+    <label>Order id: {{ order.order_id }}</label>
+    <tr>
+        <th>User id</th>
+        <td>{{ order.user_id }}</td>
+    </tr>
+    <tr>
+        <th>Customer name</th>
+        <td>{{ order.customer_name }} {{ order.customer_surname }}</td>
+    </tr>
+    <tr>
+        <th>Customer email</th>
+        <td>{{ order.customer_email }}</td>
+    </tr>
+    <tr>
+        <th>Order Address</th>
+        <td>{{ order.order_address }}</td>
+    </tr>
+    <tr>
+        <th>Comments</th>
+        <td>{{ order.comments }}</td>
+    </tr>
+    <tr>
+        <th>Items</th>
+            <td>
+                <ul>
+                    {% for item in order.parsed_order_details %}
+                    <li>
+                        {{ item.paint_name }} - Size: {{ item.paint_size }}, Quantity: {{ item.quantity }}, Price: {{ item.price }}€
+                    </li>
+                    <br>
+                    {% endfor %}
+                </ul>
+            </td>
+    </tr>
+    <tr>
+        <th>Total Price</th>
+        <td>{{ order.total_price }}€</td>
+    </tr>
+    <tr>
+        <td class="remove" colspan="2"><a href="{{ url_for('removeOrder', order_id=order.order_id ) }}">Remove order from database</a></td>
+    </tr>
+    
+    {% endfor %}
+</table>
+{% else %}
+<p>No orders.</p>
+{% endif %}
+
+{% endblock %}

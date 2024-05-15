@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Your account</h1>
+<section>
+    <form>
+
+    </form>
+</section>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<a class="link_to_page" href="{{ url_for('account_orders') }} ">SEE YOUR ORDERS</a>
+
+<section class="login">
+    <form action="{{ url_for('change_username') }}" method="post">
+
+        {{ ChangeUserForm.hidden_tag() }}
+        <h2>Change username</h2>
+        {{ ChangeUserForm.password.label }}
+        <br />
+        {{ ChangeUserForm.password() }}
+        {% for error in ChangeUserForm.password.errors %}
+        {{ error }}
+        {% endfor %}
+        <br />
+        {{ ChangeUserForm.newName.label }}
+        <br />
+        {{ ChangeUserForm.newName() }}
+        {% for error in ChangeUserForm.newName.errors %}
+        {{ error }}
+        {% endfor %}
+        <br />
+        {{ ChangeUserForm.change() }}
+    </form>
+</section>
+
+<section class="login">
+    <form action="{{ url_for('change_password') }}" method="post">
+
+        {{ ChangePasswordForm.hidden_tag() }}
+        <h2>Change password</h2>
+        {{ ChangePasswordForm.oldPassword.label }}
+        <br />
+        {{ ChangePasswordForm.oldPassword() }}
+        {% for error in ChangePasswordForm.oldPassword.errors %}
+        {{ error }}
+        {% endfor %}
+        <br />
+        {{ ChangePasswordForm.newPassword.label }}
+        <br />
+        {{ ChangePasswordForm.newPassword() }}
+        {% for error in ChangePasswordForm.newPassword.errors %}
+        {{ error }}
+        {% endfor %}
+        <br />
+        {{ ChangePasswordForm.newPassword2.label }}
+        <br />
+        {{ ChangePasswordForm.newPassword2() }}
+        {% for error in ChangePasswordForm.newPassword2.errors %}
+        {{ error }}
+        {% endfor %}
+        <br />
+        {{ ChangePasswordForm.change() }}
+    </form>
+</section>
+
+
+{% endblock %}

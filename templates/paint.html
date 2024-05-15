@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>{{ paint["paint_name"] }}</h1>
+<img class="paint" src="{{ url_for('static', filename='img/' + paint['img_name']) }}" alt="{{ paint['paint_name'] }}" style="width: 100px; height: auto;">
+<p>{{ paint["paint_description"] }}</p>
+
+<form id="add_to_cart" action="{{ url_for('add_to_cart', paint_id=paint['paint_id']) }}" method="POST">
+    {% if paint['paint_type'] != "card" %}
+        {{ form.paint_size.label }}
+        {{ form.paint_size() }}
+    {% endif %}
+
+    {% for error in form.paint_size.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
+
+
+
+    {% if not session.get("is_admin") %}
+        {{ form.quantity.label }}
+        {{ form.quantity() }}
+        {% for error in form.quantity.errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+        <button type="submit">Add to Cart</button>
+        <br/>
+    {% endif %}
+</form>
+
+{% if recommendations %}
+    <h2>Recommendations:</h2>
+    <table>
+        {% for paint in recommendations %}
+        <tr>
+            <td>
+                <img src="{{ url_for('static', filename='img/' + paint['img_name']) }}" alt="{{ paint['paint_name'] }}" style="width: 100px; height: auto;">
+            </td>
+            <td>
+                {{ paint["paint_name"] }}
+            </td>
+            <td class="see_details"><a href="{{ url_for('paint', paint_id=paint['paint_id'] ) }}">
+                    See details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}
